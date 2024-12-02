@@ -1,0 +1,114 @@
+<template>
+    <Head title="Add Role to User" />
+    <AuthenticatedLayout>
+        <template #header>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                Edit Post
+            </h2>
+        </template>
+
+        <div
+            class="flex flex-col w-5/6 mx-auto my-16 border border-gray-500 rounded-lg"
+        >
+            <div
+                class="flex flex-row justify-between items-center w-full min-h-min bg-[#21252908] border-b-2"
+            >
+                <p class="px-4 m-2 text-xl">ویرایش پست</p>
+            </div>
+            <div class="flex flex-col justify-between">
+                <div class="flex flex-col m-5">
+                    <label
+                        class="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
+                    >
+                        نام دسته بندی
+                    </label>
+                    <input
+                        type="text"
+                        v-model="form.name"
+                        class="block w-52 p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        autofocus
+                    />
+
+                    <label
+                        class="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
+                    >
+                        نام دسته بندی
+                    </label>
+
+                    <select
+                        class="block w-[20%] p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        v-model="form.category_id"
+                    >
+                        <option
+                            class="mr-5"
+                            v-for="(category, index) in categories"
+                            :key="index"
+                            :value="category.id"
+                        >
+                            {{ category.name }}
+                        </option>
+                    </select>
+                    <!-- <p v-if="$page.props.errors.device_id" class="text-red-600">
+                        {{ $page.props.errors.device_id }}
+                    </p> -->
+                </div>
+                <p
+                    class="flex flex-row justify-center text-xl text-center pt-5 text-red-600"
+                    v-if="$page.props.errors"
+                >
+                    <span v-for="(error, index) in errors" :key="index">
+                        {{ error }}
+                    </span>
+                </p>
+
+                <div
+                    class="flex flex-row justify-between items-center w-full min-h-min bg-[#21252908] border-b-2 mt-5"
+                >
+                    <button
+                        @click="update"
+                        type="button"
+                        as="button"
+                        class="h-9 px-4 m-2 text-lg duration-150 rounded focus:shadow-outline bg-white hover:bg-blue-600 text-blue-600 hover:text-white border border-blue-600 hover:border-transparent"
+                    >
+                        ویرایش پست
+                    </button>
+                    <Link
+                        :href="route('post.index')"
+                        type="button"
+                        as="button"
+                        class="h-9 px-4 m-2 text-lg duration-150 rounded focus:shadow-outline bg-[#ffc107] hover:bg-[#ffe607] text-black border border-[#ffc107] hover:border-transparent"
+                    >
+                        انصراف
+                    </Link>
+                </div>
+            </div>
+        </div>
+    </AuthenticatedLayout>
+</template>
+<script setup>
+import { Head, useForm, Link, usePage } from "@inertiajs/vue3";
+import Dashboard from "@/Pages/Dashboard.vue";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import {
+    TrashIcon,
+    EyeIcon,
+    PencilSquareIcon,
+    PlusCircleIcon,
+    ClipboardDocumentListIcon,
+    HandThumbDownIcon,
+    CheckBadgeIcon,
+    UserPlusIcon,
+    ArrowUturnLeftIcon,
+} from "@heroicons/vue/24/solid";
+const props = defineProps({
+    categories: Object,
+    post: Object,
+});
+const form = useForm({
+    name: props.post.name,
+    category_id: props.post.category_id,
+});
+function update() {
+    form.put(route("post.update", props.post.id));
+}
+</script>
