@@ -116,16 +116,6 @@
             "
         >
             <template #header_title> {{ axiosTitle }} </template>
-            <!-- <template #header_button>
-                <button
-                    as="button"
-                    type="button"
-                    class="h-8 px-4 m-2 flex items-center text-sm text-white duration-150 rounded-lg bg-red-600 border-red-600 border hover:border-black"
-                >
-                    Click
-                </button>
-            </template> -->
-
             <template #content>
                 <Table
                     :headers="axiosTableHeader"

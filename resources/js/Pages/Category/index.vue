@@ -30,7 +30,6 @@
                     }
                 "
             >
-                <!-- <Table :arrays="newValue"></Table> -->
             </Table>
         </div>
     </AuthenticatedLayout>

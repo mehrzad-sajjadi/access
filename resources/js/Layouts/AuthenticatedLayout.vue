@@ -23,8 +23,6 @@ const showingNavigationDropdown = ref(false);
 for (let i = 0; i < usePage().props.menu.length; i++) {
     console.log(usePage().props.menu[i]);
 }
-
-let isDarkMode = false;
 </script>
 
 <template>
@@ -35,8 +33,6 @@ let isDarkMode = false;
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div class="flex h-16 justify-between">
                         <div class="flex">
-                            <button>DarkMode</button>
-
                             <!-- Logo -->
                             <div class="flex shrink-0 items-center">
                                 <Link :href="route('dashboard')">
