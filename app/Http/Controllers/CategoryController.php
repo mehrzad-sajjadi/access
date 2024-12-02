@@ -48,19 +48,19 @@ class CategoryController extends Controller
     }
 
 
-    public function show(Category $category)
-    {
-        Gate::authorize("view",Category::class);
-        $posts=Post::where("category_id",$category->id)->get()->map(function($record){
-            $array = [];
-            $array["id"]        = ["key"=>"id","type"=>"text","data"=>$record->id ] ;
-            $array["name"]      = ["key"=>"name","data"=>$record->name,"type"=>"text"] ;            
-            return $array;
-        });
-        $header = ["id","name"];
-        return Inertia::render("Category/show",compact("posts","category","header"));
+    // public function show(Category $category)
+    // {
+    //     Gate::authorize("view",Category::class);
+    //     $posts=Post::where("category_id",$category->id)->get()->map(function($record){
+    //         $array = [];
+    //         $array["id"]        = ["key"=>"id","type"=>"text","data"=>$record->id ] ;
+    //         $array["name"]      = ["key"=>"name","data"=>$record->name,"type"=>"text"] ;            
+    //         return $array;
+    //     });
+    //     $header = ["id","name"];
+    //     return Inertia::render("Category/show",compact("posts","category","header"));
     
-    }
+    // }
 
 
     

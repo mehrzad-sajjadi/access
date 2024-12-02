@@ -27,7 +27,6 @@ class PostController extends Controller
             $updateBtn = false ;
         }
         
-        
         $posts = Post::all()->map(function($record)use($deleteBtn,$updateBtn){
             if($updateBtn==true){
                 $updateBtn =  ["data"=>route("post.edit",$record->id)     ,  "method"=>"get"      ,"value"=>"ویرایش"    , "type"=>"edit"        ] ;
@@ -49,9 +48,9 @@ class PostController extends Controller
                                         $deleteBtn                                    
                                     ],
                                 ];
-                                
-
+            return $array;                                
         });
+
         return Inertia::render("Post/index",compact("posts"));
     }
     
